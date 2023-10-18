@@ -1,0 +1,12 @@
+[default]
+path = "/mnt/data/Pictures/wallpaper/Horizontal"
+duration = "30m"
+sorting = "ascending"
+
+[eDP-1]
+path = "/mnt/data/Pictures/wallpaper/Horizontal"
+apply-shadow = true
+
+[HDMI-A-1]
+path = "/mnt/data/Pictures/wallpaper/Horizontal"
+sorting = "descending"
