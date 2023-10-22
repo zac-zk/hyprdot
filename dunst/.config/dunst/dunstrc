@@ -1,17 +1,17 @@
 [global]
 format = "<b>%s</b>\n%b"
 
-icon_path = "~/.local/share/icons/"
-icon_theme = WhiteSur
+icon_path = "/usr/share/icons/"
+icon_theme = ePapirus
 max_icon_size = 64
 enable_recursive_icon_lookup = true
 
 origin = top-right
-offset = 22x22
+offset = 10x10
 frame_width = 2
-frame_color = "#b4befe"
+frame_color = "#06A284"
 separator_color= frame
-font = "Fira Code 10"
-corner_radius = 7
-background = "#11111B"
-foreground = "#CDD6F4"
+font = "Source Code Pro 16"
+corner_radius = 4
+background = "#3B4252"
+foreground = "#E5E9F0"

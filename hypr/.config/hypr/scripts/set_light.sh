@@ -1,6 +1,6 @@
 #! /bin/bash
 
 case $1 in
-    up) xbacklight -inc 10 ;;
-    down) xbacklight -dec 10 ;;
+    up) brightnessctl s +10% ;;
+    down) brightnessctl s 10%- ;;
 esac
