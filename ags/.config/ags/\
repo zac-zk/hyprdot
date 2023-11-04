@@ -34,7 +34,7 @@ const Workspaces = () =>
               const id = parseInt(i.id);
               return id;
             });
-            arr = arr.filter((item) => item > 0 && item <=10);
+            arr = arr.filter((item) => item > 0);
             arr.sort((a,b)=>{return a-b});
             self.children = arr.map((i) =>
               Widget.Button({
@@ -53,8 +53,8 @@ const ClientTitle = () =>
   Widget.Label({
     className: "client-title",
     binds: [["label", Hyprland.active.client, "title", title => {
-        if(title.length>=30){
-            return title.substring(0,30)+"...";
+        if(title.length>=40){
+            return title.substring(0,40)+"...";
         }else{
             return title;
         }

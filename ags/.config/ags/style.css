@@ -1,11 +1,10 @@
 window{
   background-color: transparent;
   font-family: Source Code Pro;
-  font-size: 24px;
   font-weight: bold;
-  color: #D8DEE9;
+  font-size: 24px;
+  min-height: 30px;
 }
-
 
 .workspaces,
 .tray {
@@ -22,6 +21,7 @@ window{
     background-color: #3B4252;
     padding:0 10px;
     margin-left: 10px;
+    font-size: 20px;
 }
 
 .clock,
