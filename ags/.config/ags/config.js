@@ -13,18 +13,24 @@ const workspacesObj = {
   3: "󰎪",
   4: "󰎭",
   5: "󰎱",
-  6: "󰏆",
-  7: "󰊯",
+  6: "󰊯",
+  7: "󰏆",
   8: "",
   9: "",
   10: "󰎅",
 };
 
+function sh(cmd) {
+  return function() {
+    execAsync(['bash', '-c', cmd]);
+  }; 
+}
+
 const Workspaces = () =>
   Widget.EventBox({
     className: "workspaces",
-    onScrollUp: () => execAsync(`hyprctl dispatch workspace -1`),
-    onScrollDown: () => execAsync(`hyprctl dispatch workspace +1`),
+    onScrollUp: sh('hyprctl dispatch workspace -1'),
+    onScrollDown: sh('hyprctl dispatch workspace +1'),
     child: Widget.Box({
       connections: [
         [
@@ -38,7 +44,7 @@ const Workspaces = () =>
             arr.sort((a,b)=>{return a-b});
             self.children = arr.map((i) =>
               Widget.Button({
-                onClicked: () => execAsync(`hyprctl dispatch workspace ${i}`),
+                onClicked: sh(`hyprctl dispatch workspace ${i}`),
                 child: Widget.Label(workspacesObj[i]),
                 className: Hyprland.active.workspace.id == i ? "focused" : "",
               })
@@ -137,8 +143,8 @@ const Brightness = () =>
         ],
       }),
       Widget.EventBox({
-        onScrollUp: "brightnessctl s +5%",
-        onScrollDown: "brightnessctl s 5%-",
+        onScrollUp: sh('brightnessctl s +5%'),
+        onScrollDown: sh('brightnessctl s 5%-'),
         child: Widget.Label({
           connections: [
             [
@@ -147,9 +153,9 @@ const Brightness = () =>
                 execAsync(["brightnessctl", "g"])
                   .then(
                     (val) =>
-                      (self.label = (parseInt(val) / 1200).toString() + "% ")
+                      (self.label = parseInt(parseInt(val) / 1200).toString() + "% ")
                   )
-                  .catch(console.erroe),
+                  .catch(console.error),
             ],
           ],
         }),
@@ -191,10 +197,10 @@ const Volume = () =>
         ],
       }),
       Widget.EventBox({
-        onScrollUp: "amixer set Master 5%+ unmute",
-        onScrollDown: "amixer set Master 5%- unmute",
-        onMiddleClick: "amixer set Master toggle",
-        onPrimaryClick: "pavucontrol",
+        onScrollUp: sh("amixer set Master 5%+ unmute"),
+        onScrollDown: sh("amixer set Master 5%- unmute"),
+        onMiddleClick: sh("amixer set Master toggle"),
+        onPrimaryClick: sh("pavucontrol"),
         child: Widget.Label({
           connections: [
             [
@@ -285,7 +291,7 @@ const Center = () =>
 
 const Right = () =>
   Widget.Box({
-    halign: "end",
+    hpack: "end",
     children: [
       Memory(),
       CPU(),
@@ -306,7 +312,7 @@ const Bar = ({ monitor } = {}) =>
     anchor: ["top", "left", "right"],
     exclusive: true,
     layer: "top",
-    margin: [5, 12, 0, 12],
+    margins: [5, 12, 0, 12],
     child: Widget.CenterBox({
       startWidget: Left(),
       centerWidget: Center(),
@@ -315,6 +321,6 @@ const Bar = ({ monitor } = {}) =>
   });
 
 export default {
-  style: App.configDir + "/style.css",
+  style: App.configDir + "/css.css",
   windows: [Bar({ monitor: 0 }), Bar({ monitor: 1 })],
 };

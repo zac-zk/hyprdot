@@ -20,6 +20,14 @@ window#HDMI-A-1 {
     background-color: black;
     padding: 0px;
 }
+window#HDMI-A-3 {
+    background-image: url("/mnt/data/Pictures/wallpaper/Horizontal/66.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: black;
+    padding: 0px;
+}
 
 box#window-box {
     padding-bottom: 600px;

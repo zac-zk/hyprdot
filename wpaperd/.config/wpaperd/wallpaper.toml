@@ -11,3 +11,6 @@ sorting = "ascending"
 [HDMI-A-1]
 path = "/mnt/data/Pictures/wallpaper/Horizontal"
 sorting = "descending"
+[HDMI-A-3]
+path = "/mnt/data/Pictures/wallpaper/Horizontal"
+sorting = "descending"
