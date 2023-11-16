@@ -12,3 +12,9 @@ wpaperd
 
 # gtk theme not valid
 dconf-editor
+
+# 守护程序，用于熄屏
+swayidle
+
+# 锁屏
+gtklock

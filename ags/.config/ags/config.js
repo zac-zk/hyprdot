@@ -110,6 +110,17 @@ const CPU = () =>
     ],
   });
 
+const brightnessVar = Variable(100, {
+    poll: [
+        100,
+        [
+            "bash",
+            "-c",
+            "brightnessctl g",
+        ],
+    ],
+});
+
 const Brightness = () =>
   Widget.Box({
     className: "brightness",
@@ -128,36 +139,21 @@ const Brightness = () =>
           ["10", Widget.Label("󱩎")],
           ["0", Widget.Label("󰹐")],
         ],
-        connections: [
-          [
-            1000,
-            (self) => {
-              execAsync(["brightnessctl", "g"]).then((val) => {
-                const show = [100, 90, 90, 70, 60, 50, 40, 30, 20, 10, 0].find(
-                  (threshold) => threshold <= parseInt(val) / 1200
-                );
-                self.shown = `${show}`;
-              });
-            },
-          ],
+        binds: [
+            ["shown", brightnessVar, "value", (value) => {
+                return [100, 90, 90, 70, 60, 50, 40, 30, 20, 10, 0].find(
+                    (threshold) => threshold <= parseInt(value) / 1200
+                ).toString();
+            }]
         ],
       }),
       Widget.EventBox({
         onScrollUp: sh('brightnessctl s +5%'),
         onScrollDown: sh('brightnessctl s 5%-'),
         child: Widget.Label({
-          connections: [
-            [
-              1000,
-              (self) =>
-                execAsync(["brightnessctl", "g"])
-                  .then(
-                    (val) =>
-                      (self.label = parseInt(parseInt(val) / 1200).toString() + "% ")
-                  )
-                  .catch(console.error),
+            binds: [
+                ["label", brightnessVar, "value", (value) => (parseInt(value)/1200).toString() + "% "]
             ],
-          ],
         }),
       }),
     ],
@@ -181,7 +177,7 @@ const Volume = () =>
             (self) => {
               if (!Audio.speaker) return;
 
-              if (Audio.speaker.isMuted) {
+              if (Audio.speaker.stream.isMuted) {
                 self.shown = "0";
                 return;
               }
@@ -206,8 +202,13 @@ const Volume = () =>
             [
               Audio,
               (self) => {
-                self.label =
-                   parseInt(Audio.speaker.volume * 100).toString() + "%";
+                if (Audio.speaker.isMuted){
+                  self.label = "--%";
+                }else{
+                  self.label =
+                    parseInt(Audio.speaker.volume * 100).toString() + "%";
+
+                }
               },
               "speaker-changed",
             ],
