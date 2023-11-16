@@ -176,12 +176,10 @@ const Volume = () =>
             Audio,
             (self) => {
               if (!Audio.speaker) return;
-
               if (Audio.speaker.stream.isMuted) {
                 self.shown = "0";
                 return;
               }
-
               const show = [101, 67, 34, 1, 0].find(
                 (threshold) => threshold <= Audio.speaker.volume * 100
               );
@@ -207,7 +205,9 @@ const Volume = () =>
                 }else{
                   self.label =
                     parseInt(Audio.speaker.volume * 100).toString() + "%";
-
+                }
+                if(Audio.speaker.name.indexOf("blue")!=-1){
+                    self.label=self.label+" 󰥰";
                 }
               },
               "speaker-changed",
