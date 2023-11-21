@@ -15,6 +15,8 @@ dconf-editor
 
 # 守护程序，用于熄屏
 swayidle
+# 阻止播放音频熄屏
+sway-audio-idle-inhibit-git
 
 # 锁屏
 gtklock
