@@ -6,4 +6,4 @@ git add .
 git commit -m "timely commit"
 git push -u origin
 
-date >> github_sync.log
+date >> ./scripts/github_sync.log
