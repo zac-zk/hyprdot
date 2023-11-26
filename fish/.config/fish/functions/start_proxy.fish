@@ -1,5 +1,5 @@
 function start_proxy
-    export https_proxy=http://127.0.0.1:7890
-    export http_proxy=http://127.0.0.1:7890
-    export all_proxy=http://127.0.0.1:7890
+    set -x https_proxy=http://127.0.0.1:20172
+    set -x http_proxy=http://127.0.0.1:20172
+    set -x all_proxy=http://127.0.0.1:20172
 end
