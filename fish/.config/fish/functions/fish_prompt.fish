@@ -73,7 +73,7 @@ function fish_prompt
     echo -n ']'
 
     # Date
-    _nim_prompt_wrapper $retc '' (date +%X)
+    _nim_prompt_wrapper $retc '' (date +%H:%M:%S)
 
     # Vi-mode
     # The default mode prompt would be prefixed, which ruins our alignment.
