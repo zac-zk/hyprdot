@@ -1,0 +1,2 @@
+# sixel image support
+chafa
