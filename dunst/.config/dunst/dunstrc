@@ -12,6 +12,6 @@ frame_width = 2
 frame_color = "#06A284"
 separator_color= frame
 font = "Source Code Pro 16"
-corner_radius = 4
+corner_radius = 16
 background = "#3B4252"
 foreground = "#E5E9F0"
